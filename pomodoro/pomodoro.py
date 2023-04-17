@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Dict, Any
 import json
 import structlog
+import logging
 
 SOURCE_DIRNAME = os.path.dirname(os.path.realpath(__file__))
 CONFIG_PATH = os.path.join(SOURCE_DIRNAME, "config.json")
@@ -14,10 +15,16 @@ DATA_DIR = os.path.join(SOURCE_DIRNAME, "data")
 logger = structlog.get_logger(__name__)
 
 
+def read_file(path: str) -> Dict:
+    """Read a file."""
+    with open(path, "r") as f:
+        return json.load(f)
+
+
 class Pomodoro:
     """Class for tracking Pomodoro work sessions."""
 
-    work: str
+    activity: str
     time: datetime
     path: str
     actions: Dict[str, Any]
@@ -30,13 +37,14 @@ class Pomodoro:
         :param time: Time for the session log.
         """
         self.time = time
-        self.work = work
+        self.activity = work
         self.path = os.path.join(DATA_DIR, f"{time.date().isoformat()}.json")
         self.data = (
-            self._read_file(self.path)
+            read_file(self.path)
             if os.path.exists(self.path)
             else {"date": time.date().isoformat()}
         )
+        self.logger = logger.bind(work=work, time=time)
 
     def start(self) -> None:
         """Start a work session."""
@@ -44,8 +52,12 @@ class Pomodoro:
 
     def stop(self) -> None:
         """Stop a work session."""
-        if self.work not in self.data or self.data[self.work][-1]["action"] != "start":
-            raise ValueError("Cannot stop work that has not been started.")
+        if (
+            self.activity not in self.data
+            or self.data[self.activity][-1]["action"] != "start"
+        ):
+            self.logger.warning("No active session found for this activity.")
+            return
         self._add_action("stop")
 
     def _add_action(self, action: str) -> None:
@@ -54,34 +66,35 @@ class Pomodoro:
 
         :param action: Name of the action to add to the session log.
         """
-        logger.info("Adding action.", action=action, work=self.work, time=self.time)
+        self.logger.debug("Adding action.", action=action)
         new_action = {"action": action, "time": self.time.isoformat()}
         logger.info(
             "This will add the following action. Are you sure you want to continue?",
             action=action,
-            work=self.work,
+            work=self.activity,
             time=self.time,
         )
-        if self.data[self.work] and self.data[self.work][-1] == new_action:
-            raise ValueError("Action already exists.")
-        if self._get_approval():
-            self.data[self.work].append(new_action)
-            self._write_update()
-            logger.info(
-                "Added action.",
+        if self.data[self.activity] and self.data[self.activity][-1] == new_action:
+            self.logger.warning(
+                "This action is a duplicate of the last action. Skipping.",
                 action=action,
-                work=self.work,
-                time=self.time,
-                filepath=self.path,
+                last_action=self.data[self.activity][-1],
             )
+        if self._get_approval():
+            self.data[self.activity].append(new_action)
+            self._write_update()
+            self.logger.debug("Added action.", action=action, filepath=self.path)
         else:
-            logger.info("Skipping action.")
+            self.logger.debug("Skipping action.")
 
     def show(self) -> None:
         """Show the session log."""
-        logger.info("Showing actions.", work=self.work, time=self.time)
-        print(json.dumps(self.data[self.work], indent=4))
-        logger.info("Showed actions.", work=self.work, time=self.time)
+        self.logger.debug("Showing actions.")
+        if self.activity not in self.data:
+            self.logger.warning("No actions found for this activity.")
+            return
+        print(json.dumps(self.data[self.activity], indent=4))
+        self.logger.debug("Showed actions.")
 
     @staticmethod
     def _get_approval():
@@ -92,33 +105,20 @@ class Pomodoro:
         """
         return input("Type 'y' to continue: ") == "y"
 
-    @staticmethod
-    def _read_file(path: str) -> Dict:
-        """Read a file."""
-        logger.info("Reading file.", path=path)
-        with open(path, "r") as f:
-            return json.load(f)
-
     def _write_update(self) -> None:
         """Write an update to the session log."""
-        logger.info("Writing file.", path=self.path)
+        self.logger.debug("Writing file.", path=self.path)
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
         with open(self.path, "w") as f:
             json.dump(self.data, f)
-        logger.info("Wrote to file.", path=self.path)
-
-
-def read_config(path: str = CONFIG_PATH) -> Dict:
-    """Read the config file."""
-    with open(path, "r") as f:
-        return json.load(f)
+        self.logger.debug("Wrote to file.", path=self.path)
 
 
 def add_time_subparser(parser: argparse.ArgumentParser) -> None:
     """Add a time subparser to the parser."""
     parser.add_argument(
         "--time",
-        type=str,
+        type=lambda t: datetime.strptime(t, "%I:%M%p"),
         help="Time in format HH:MM{AM|PM}",
         default=datetime.now().strftime("%I:%M%p"),
     )
@@ -128,19 +128,9 @@ def add_date_subparser(parser: argparse.ArgumentParser) -> None:
     """Add a date subparser to the parser."""
     parser.add_argument(
         "--date",
-        type=str,
+        type=lambda d: datetime.strptime(d, "%m-%d-%y"),
         help="Date in format MM-DD-YY",
         default=datetime.now().strftime("%m-%d-%y"),
-    )
-
-
-def add_activity_subparser(parser: argparse.ArgumentParser, config: Dict) -> None:
-    """Add an activity subparser to the parser."""
-    parser.add_argument(
-        "activity",
-        type=str,
-        help="Activity for the pomodoro session",
-        choices=config["activities"],
     )
 
 
@@ -151,23 +141,38 @@ def parse_args(config: Dict) -> argparse.Namespace:
     :param config: Configuration dictionary.
     """
     parser = argparse.ArgumentParser()
-    subparsers = parser.add_subparsers(title="subcommands", dest="command")
+    subparsers = parser.add_subparsers(
+        title="subcommands", dest="command", required=True
+    )
     start_parser = subparsers.add_parser("start", help="Start a pomodoro session")
     add_time_subparser(start_parser)
     stop_parser = subparsers.add_parser("stop", help="Stop a pomodoro session")
     add_time_subparser(stop_parser)
     show_parser = subparsers.add_parser("show", help="Show pomodoro sessions")
     add_date_subparser(show_parser)
-    add_activity_subparser(start_parser, config)
-    add_activity_subparser(stop_parser, config)
-    add_activity_subparser(show_parser, config)
+    parser.add_argument(
+        "activity",
+        type=str,
+        help="Activity for the pomodoro session",
+        choices=config["activities"],
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug logging",
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     """Main function."""
-    args = parse_args(read_config())
-    pomodoro = Pomodoro(args.activity, args.time or args.date)
+    args = parse_args(read_file(CONFIG_PATH))
+    structlog.configure(
+        wrapper_class=structlog.make_filtering_bound_logger(
+            logging.DEBUG if args.debug else logging.INFO
+        ),
+    )
+    pomodoro = Pomodoro(args.activity, args.time if "time" in args else args.date)
     if args.command == "start":
         pomodoro.start()
     elif args.command == "stop":
