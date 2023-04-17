@@ -27,7 +27,7 @@ class Pomodoro:
     activity: str
     time: datetime
     path: str
-    actions: Dict[str, Any]
+    data: Dict[str, Any]
 
     def __init__(self, work: str, time: datetime) -> None:
         """
@@ -120,7 +120,7 @@ def add_time_subparser(parser: argparse.ArgumentParser) -> None:
         "--time",
         type=lambda t: datetime.strptime(t, "%I:%M%p"),
         help="Time in format HH:MM{AM|PM}",
-        default=datetime.now().strftime("%I:%M%p"),
+        default=datetime.now(),
     )
 
 
@@ -130,7 +130,7 @@ def add_date_subparser(parser: argparse.ArgumentParser) -> None:
         "--date",
         type=lambda d: datetime.strptime(d, "%m-%d-%y"),
         help="Date in format MM-DD-YY",
-        default=datetime.now().strftime("%m-%d-%y"),
+        default=datetime.now(),
     )
 
 
