@@ -118,7 +118,9 @@ def add_time_subparser(parser: argparse.ArgumentParser) -> None:
     """Add a time subparser to the parser."""
     parser.add_argument(
         "--time",
-        type=lambda t: datetime.strptime(t, "%I:%M%p"),
+        type=lambda t: datetime.strptime(t, "%I:%M%p").replace(
+            year=datetime.now().year, month=datetime.now().month, day=datetime.now().day
+        ),
         help="Time in format HH:MM{AM|PM}",
         default=datetime.now().replace(second=0, microsecond=0),
     )
