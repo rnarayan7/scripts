@@ -93,7 +93,7 @@ class Pomodoro:
         if self.activity not in self.data:
             self.logger.warning("No actions found for this activity.")
             return
-        print(json.dumps(self.data[self.activity], indent=4))
+        print(json.dumps(self.data[self.activity], indent=4, sort_keys=False))
         self.logger.debug("Showed actions.")
 
     @staticmethod
