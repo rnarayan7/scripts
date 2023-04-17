@@ -120,7 +120,7 @@ def add_time_subparser(parser: argparse.ArgumentParser) -> None:
         "--time",
         type=lambda t: datetime.strptime(t, "%I:%M%p"),
         help="Time in format HH:MM{AM|PM}",
-        default=datetime.now(),
+        default=datetime.now().replace(second=0, microsecond=0),
     )
 
 
@@ -130,7 +130,7 @@ def add_date_subparser(parser: argparse.ArgumentParser) -> None:
         "--date",
         type=lambda d: datetime.strptime(d, "%m-%d-%y"),
         help="Date in format MM-DD-YY",
-        default=datetime.now(),
+        default=datetime.now().replace(second=0, microsecond=0),
     )
 
 
