@@ -47,11 +47,11 @@ class Pomodoro:
         self.logger = logger.bind(activity=self.activity, time=self.time)
 
     def start(self) -> None:
-        """Start a work session."""
+        """Start a session."""
         self._add_action("start")
 
     def stop(self) -> None:
-        """Stop a work session."""
+        """Stop a session."""
         if (
             self.activity not in self.data
             or self.data[self.activity][-1]["action"] != "start"
@@ -71,8 +71,6 @@ class Pomodoro:
         logger.info(
             "This will add the following action. Are you sure you want to continue?",
             action=action,
-            work=self.activity,
-            time=self.time,
         )
         if self.activity in self.data and self.data[self.activity][-1] == new_action:
             self.logger.warning(
