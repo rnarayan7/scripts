@@ -29,15 +29,15 @@ class Pomodoro:
     path: str
     data: Dict[str, Any]
 
-    def __init__(self, work: str, time: datetime) -> None:
+    def __init__(self, activity: str, time: datetime) -> None:
         """
         Initialize the Pomodoro class.
 
-        :param work: Type of work being done.
+        :param activity: Type of activity being done.
         :param time: Time for the session log.
         """
         self.time = time
-        self.activity = work
+        self.activity = activity
         self.path = os.path.join(DATA_DIR, f"{time.date().isoformat()}.json")
         self.data = (
             read_file(self.path)
@@ -74,12 +74,14 @@ class Pomodoro:
             work=self.activity,
             time=self.time,
         )
-        if self.data[self.activity] and self.data[self.activity][-1] == new_action:
+        if self.activity in self.data and self.data[self.activity][-1] == new_action:
             self.logger.warning(
                 "This action is a duplicate of the last action. Skipping.",
                 action=action,
                 last_action=self.data[self.activity][-1],
             )
+        elif self.activity not in self.data:
+            self.data[self.activity] = []
         if self._get_approval():
             self.data[self.activity].append(new_action)
             self._write_update()
@@ -174,7 +176,9 @@ if __name__ == "__main__":
             logging.DEBUG if args.debug else logging.INFO
         ),
     )
-    pomodoro = Pomodoro(args.activity, args.time if "time" in args else args.date)
+    pomodoro = Pomodoro(
+        activity=args.activity, time=(args.time if "time" in args else args.date)
+    )
     if args.command == "start":
         pomodoro.start()
     elif args.command == "stop":
