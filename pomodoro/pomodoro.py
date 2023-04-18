@@ -68,7 +68,7 @@ class Pomodoro:
         """
         self.logger.debug("Adding action.", action=action)
         new_action = {"action": action, "time": self.time.isoformat()}
-        logger.info(
+        self.logger.info(
             "This will add the following action. Are you sure you want to continue?",
             action=action,
         )
