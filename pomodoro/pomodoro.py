@@ -44,7 +44,7 @@ class Pomodoro:
             if os.path.exists(self.path)
             else {"date": time.date().isoformat()}
         )
-        self.logger = logger.bind(work=work, time=time)
+        self.logger = logger.bind(activity=self.activity, time=self.time)
 
     def start(self) -> None:
         """Start a work session."""
