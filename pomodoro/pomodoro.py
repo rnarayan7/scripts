@@ -193,7 +193,12 @@ if __name__ == "__main__":
             logging.DEBUG if args.debug else logging.INFO
         ),
     )
-    pomodoro = Pomodoro(activity=args.activity, time=merge_times(args.time, args.date))
+    pomodoro = Pomodoro(
+        activity=args.activity,
+        time=merge_times(
+            args.time if "time" in args else None, args.date if "date" in args else None
+        ),
+    )
     if args.command == "start":
         pomodoro.start()
     elif args.command == "stop":
