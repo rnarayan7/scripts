@@ -1,4 +1,4 @@
-#!/usr/bin/env /usr/local/bin/python3
+#!/usr/bin/python3
 
 import argparse
 import os.path
@@ -118,11 +118,9 @@ def add_time_subparser(parser: argparse.ArgumentParser) -> None:
     """Add a time subparser to the parser."""
     parser.add_argument(
         "--time",
-        type=lambda t: datetime.strptime(t, "%I:%M%p").replace(
-            year=datetime.now().year, month=datetime.now().month, day=datetime.now().day
-        ),
+        type=str,
         help="Time in format HH:MM{AM|PM}",
-        default=datetime.now().replace(second=0, microsecond=0),
+        default="",
     )
 
 
@@ -130,9 +128,9 @@ def add_date_subparser(parser: argparse.ArgumentParser) -> None:
     """Add a date subparser to the parser."""
     parser.add_argument(
         "--date",
-        type=lambda d: datetime.strptime(d, "%m-%d-%y"),
+        type=str,
         help="Date in format MM-DD-YY",
-        default=datetime.now().replace(second=0, microsecond=0),
+        default="",
     )
 
 
@@ -148,8 +146,10 @@ def parse_args(config: Dict) -> argparse.Namespace:
     )
     start_parser = subparsers.add_parser("start", help="Start a pomodoro session")
     add_time_subparser(start_parser)
+    add_date_subparser(start_parser)
     stop_parser = subparsers.add_parser("stop", help="Stop a pomodoro session")
     add_time_subparser(stop_parser)
+    add_date_subparser(stop_parser)
     show_parser = subparsers.add_parser("show", help="Show pomodoro sessions")
     add_date_subparser(show_parser)
     parser.add_argument(
@@ -166,6 +166,25 @@ def parse_args(config: Dict) -> argparse.Namespace:
     return parser.parse_args()
 
 
+def merge_times(time: str, date: str) -> datetime:
+    """
+    Merge the time and date into a datetime object.
+
+    :param time: Time string in format HH:MM{AM|PM}.
+    :param date: Date string in format MM-DD-YY.
+    :return: Datetime object.
+    """
+    if not time and not date:
+        return datetime.now().replace(second=0, microsecond=0)
+    elif not time:
+        return datetime.strptime(date, "%m-%d-%y")
+    elif not date:
+        return datetime.strptime(time, "%I:%M%p").replace(
+            year=datetime.now().year, month=datetime.now().month, day=datetime.now().day
+        )
+    return datetime.strptime(f"{date} {time}", "%m-%d-%y %I:%M%p")
+
+
 if __name__ == "__main__":
     """Main function."""
     args = parse_args(read_file(CONFIG_PATH))
@@ -174,9 +193,7 @@ if __name__ == "__main__":
             logging.DEBUG if args.debug else logging.INFO
         ),
     )
-    pomodoro = Pomodoro(
-        activity=args.activity, time=(args.time if "time" in args else args.date)
-    )
+    pomodoro = Pomodoro(activity=args.activity, time=merge_times(args.time, args.date))
     if args.command == "start":
         pomodoro.start()
     elif args.command == "stop":
