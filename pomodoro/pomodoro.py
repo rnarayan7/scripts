@@ -48,6 +48,9 @@ class Pomodoro:
 
     def start(self) -> None:
         """Start a session."""
+        if self.activity in self.data and self.data[self.activity][-1]["action"] != "stop":
+            self.logger.warning("Session in-progress", session=self.data[self.activity][-1])
+            return
         self._add_action("start")
 
     def stop(self) -> None:
