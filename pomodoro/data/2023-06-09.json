@@ -1,1 +1,57 @@
-{"date": "2023-06-09", "work": [{"action": "start", "time": "2023-06-09T09:27:00"}, {"action": "stop", "time": "2023-06-09T10:08:00"}, {"action": "start", "time": "2023-06-09T10:35:00"}, {"action": "stop", "time": "2023-06-09T11:04:00"}, {"action": "start", "time": "2023-06-09T11:56:00"}, {"action": "stop", "time": "2023-06-09T12:00:00"}, {"action": "start", "time": "2023-06-09T12:37:00"}, {"action": "stop", "time": "2023-06-09T13:41:00"}, {"action": "start", "time": "2023-06-09T15:38:00"}, {"action": "stop", "time": "2023-06-09T15:40:00"}, {"action": "start", "time": "2023-06-09T16:13:00"}, {"action": "stop", "time": "2023-06-09T16:52:00"}]}
+{
+    "date": "2023-06-09",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-06-09T09:27:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T10:08:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-09T10:35:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T11:04:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-09T11:56:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T12:00:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-09T12:37:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T13:41:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-09T15:38:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T15:40:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-09T16:13:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-09T16:52:00"
+                }
+            ]
+        }
+    }
+}

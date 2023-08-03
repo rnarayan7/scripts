@@ -1,1 +1,73 @@
-{"date": "2023-05-04", "work": [{"action": "start", "time": "2023-05-04T09:56:00"}, {"action": "stop", "time": "2023-05-04T11:00:00"}, {"action": "start", "time": "2023-05-04T13:57:00"}, {"action": "stop", "time": "2023-05-04T16:25:00"}, {"action": "start", "time": "2023-05-04T16:35:00"}, {"action": "stop", "time": "2023-05-04T17:16:00"}, {"action": "start", "time": "2023-05-04T17:27:00"}, {"action": "stop", "time": "2023-05-04T17:50:00"}, {"action": "start", "time": "2023-05-04T19:21:00"}, {"action": "stop", "time": "2023-05-04T19:28:00"}, {"action": "start", "time": "2023-05-04T19:39:00"}, {"action": "stop", "time": "2023-05-04T20:00:00"}, {"action": "start", "time": "2023-05-04T20:55:00"}, {"action": "stop", "time": "2023-05-04T21:19:00"}, {"action": "start", "time": "2023-05-04T23:45:00"}, {"action": "stop", "time": "2023-05-04T23:55:00"}]}
+{
+    "date": "2023-05-04",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-05-04T09:56:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T11:00:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T13:57:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T16:25:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T16:35:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T17:16:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T17:27:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T17:50:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T19:21:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T19:28:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T19:39:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T20:00:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T20:55:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T21:19:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-04T23:45:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-04T23:55:00"
+                }
+            ]
+        }
+    }
+}
