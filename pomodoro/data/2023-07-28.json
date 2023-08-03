@@ -1,49 +1,47 @@
 {
     "date": "2023-07-28",
     "activities": {
-        "activities": {
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-07-28T10:00:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-28T12:33:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-07-28T13:00:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-28T14:15:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-07-28T15:50:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-28T15:58:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-07-28T16:10:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-28T16:33:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-07-28T17:12:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-28T18:24:00"
-                }
-            ]
-        }
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-07-28T10:00:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-28T12:33:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-07-28T13:00:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-28T14:15:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-07-28T15:50:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-28T15:58:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-07-28T16:10:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-28T16:33:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-07-28T17:12:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-28T18:24:00"
+            }
+        ]
     }
 }

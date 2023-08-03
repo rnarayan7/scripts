@@ -1,41 +1,39 @@
 {
     "date": "2023-05-25",
     "activities": {
-        "activities": {
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-05-25T10:20:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-25T11:45:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-25T13:10:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-25T13:49:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-25T14:24:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-25T14:46:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-25T15:06:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-25T16:49:00"
-                }
-            ]
-        }
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-05-25T10:20:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-25T11:45:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-25T13:10:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-25T13:49:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-25T14:24:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-25T14:46:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-25T15:06:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-25T16:49:00"
+            }
+        ]
     }
 }
