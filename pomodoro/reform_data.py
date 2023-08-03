@@ -7,10 +7,7 @@ def main():
             fpath = os.path.join(os.path.dirname(__file__), "data", filename)
             with open(fpath, "r") as f:
                 data = json.load(f)
-            new_data = {"date": data["date"], "activities": {}}
-            for key in data:
-                if key != "date":
-                    new_data["activities"][key] = data[key]
+            new_data = {"date": data["date"], "activities": data["activities"]["activities"]}
             with open(fpath, "w") as f:
                 json.dump(new_data, f, indent=4)
 

@@ -1,17 +1,15 @@
 {
     "date": "2023-04-23",
     "activities": {
-        "activities": {
-            "ai": [
-                {
-                    "action": "start",
-                    "time": "2023-04-23T21:30:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-23T21:50:00"
-                }
-            ]
-        }
+        "ai": [
+            {
+                "action": "start",
+                "time": "2023-04-23T21:30:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-23T21:50:00"
+            }
+        ]
     }
 }

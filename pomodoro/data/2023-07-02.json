@@ -1,17 +1,15 @@
 {
     "date": "2023-07-02",
     "activities": {
-        "activities": {
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-07-02T17:57:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-07-02T18:01:00"
-                }
-            ]
-        }
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-07-02T17:57:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-07-02T18:01:00"
+            }
+        ]
     }
 }

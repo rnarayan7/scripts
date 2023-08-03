@@ -1,65 +1,63 @@
 {
     "date": "2023-05-01",
     "activities": {
-        "activities": {
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-05-01T07:17:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T08:23:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T08:58:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T09:26:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T09:38:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T10:41:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T10:57:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T11:39:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T11:49:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T16:08:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T16:37:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T16:42:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-05-01T16:58:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-05-01T17:11:00"
-                }
-            ]
-        }
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-05-01T07:17:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T08:23:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T08:58:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T09:26:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T09:38:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T10:41:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T10:57:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T11:39:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T11:49:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T16:08:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T16:37:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T16:42:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-05-01T16:58:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-05-01T17:11:00"
+            }
+        ]
     }
 }

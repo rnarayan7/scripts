@@ -1,59 +1,57 @@
 {
     "date": "2023-04-24",
     "activities": {
-        "activities": {
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-04-24T08:56:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T09:25:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-04-24T09:31:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T09:35:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-04-24T10:15:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T10:24:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-04-24T10:30:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T14:47:00"
-                },
-                {
-                    "action": "start",
-                    "time": "2023-04-24T15:26:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T16:02:00"
-                }
-            ],
-            "ai": [
-                {
-                    "action": "start",
-                    "time": "2023-04-24T20:30:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-24T22:20:00"
-                }
-            ]
-        }
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-04-24T08:56:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T09:25:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-04-24T09:31:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T09:35:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-04-24T10:15:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T10:24:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-04-24T10:30:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T14:47:00"
+            },
+            {
+                "action": "start",
+                "time": "2023-04-24T15:26:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T16:02:00"
+            }
+        ],
+        "ai": [
+            {
+                "action": "start",
+                "time": "2023-04-24T20:30:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-24T22:20:00"
+            }
+        ]
     }
 }

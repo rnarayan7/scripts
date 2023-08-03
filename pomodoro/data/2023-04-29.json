@@ -1,27 +1,25 @@
 {
     "date": "2023-04-29",
     "activities": {
-        "activities": {
-            "logistics": [
-                {
-                    "action": "start",
-                    "time": "2023-04-29T15:40:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-29T16:40:00"
-                }
-            ],
-            "work": [
-                {
-                    "action": "start",
-                    "time": "2023-04-29T16:40:00"
-                },
-                {
-                    "action": "stop",
-                    "time": "2023-04-29T17:04:00"
-                }
-            ]
-        }
+        "logistics": [
+            {
+                "action": "start",
+                "time": "2023-04-29T15:40:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-29T16:40:00"
+            }
+        ],
+        "work": [
+            {
+                "action": "start",
+                "time": "2023-04-29T16:40:00"
+            },
+            {
+                "action": "stop",
+                "time": "2023-04-29T17:04:00"
+            }
+        ]
     }
 }
