@@ -1,1 +1,17 @@
-{"date": "2023-06-06", "work": [{"action": "start", "time": "2023-06-06T10:23:00"}, {"action": "stop", "time": "2023-06-06T17:10:00"}]}
+{
+    "date": "2023-06-06",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-06-06T10:23:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-06T17:10:00"
+                }
+            ]
+        }
+    }
+}

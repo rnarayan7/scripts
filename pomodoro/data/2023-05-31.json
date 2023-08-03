@@ -1,1 +1,65 @@
-{"date": "2023-05-31", "work": [{"action": "start", "time": "2023-05-31T09:14:00"}, {"action": "stop", "time": "2023-05-31T10:20:00"}, {"action": "start", "time": "2023-05-31T10:35:00"}, {"action": "stop", "time": "2023-05-31T11:40:00"}, {"action": "start", "time": "2023-05-31T12:05:00"}, {"action": "stop", "time": "2023-05-31T12:35:00"}, {"action": "start", "time": "2023-05-31T13:20:00"}, {"action": "stop", "time": "2023-05-31T14:03:00"}, {"action": "start", "time": "2023-05-31T14:22:00"}, {"action": "stop", "time": "2023-05-31T14:34:00"}, {"action": "start", "time": "2023-05-31T15:29:00"}, {"action": "stop", "time": "2023-05-31T15:36:00"}, {"action": "start", "time": "2023-05-31T16:37:00"}, {"action": "stop", "time": "2023-05-31T16:40:00"}]}
+{
+    "date": "2023-05-31",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-05-31T09:14:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T10:20:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T10:35:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T11:40:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T12:05:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T12:35:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T13:20:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T14:03:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T14:22:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T14:34:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T15:29:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T15:36:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-05-31T16:37:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-05-31T16:40:00"
+                }
+            ]
+        }
+    }
+}

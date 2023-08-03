@@ -1,51 +1,55 @@
 {
     "date": "2023-08-03",
-    "work": [
-        {
-            "action": "start",
-            "time": "2023-08-03T09:24:00"
-        },
-        {
-            "action": "stop",
-            "time": "2023-08-03T11:11:00"
-        },
-        {
-            "action": "start",
-            "time": "2023-08-03T12:46:00"
-        },
-        {
-            "action": "stop",
-            "time": "2023-08-03T12:57:00"
-        },
-        {
-            "action": "start",
-            "time": "2023-08-03T13:08:00"
-        },
-        {
-            "action": "stop",
-            "time": "2023-08-03T13:17:00"
-        },
-        {
-            "action": "start",
-            "time": "2023-08-03T14:43:00"
-        },
-        {
-            "action": "stop",
-            "time": "2023-08-03T15:27:00"
-        },
-        {
-            "action": "start",
-            "time": "2023-08-03T17:33:00"
-        },
-        {
-            "action": "stop",
-            "time": "2023-08-03T17:59:00"
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-08-03T09:24:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-08-03T11:11:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-08-03T12:46:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-08-03T12:57:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-08-03T13:08:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-08-03T13:17:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-08-03T14:43:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-08-03T15:27:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-08-03T17:33:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-08-03T17:59:00"
+                }
+            ],
+            "logistics": [
+                {
+                    "action": "start",
+                    "time": "2023-08-03T18:10:00"
+                }
+            ]
         }
-    ],
-    "logistics": [
-        {
-            "action": "start",
-            "time": "2023-08-03T18:10:00"
-        }
-    ]
+    }
 }

@@ -44,16 +44,17 @@ class Pomodoro:
             if os.path.exists(self.path)
             else {"date": time.date().isoformat()}
         )
+        self.activity_log = self.data["activities"]
         self.logger = logger.bind(activity=self.activity, time=self.time)
 
     def start(self) -> None:
         """Start a session."""
         if (
-            self.activity in self.data
-            and self.data[self.activity][-1]["action"] != "stop"
+            self.activity in self.activity_log
+            and self.activity_log[self.activity][-1]["action"] != "stop"
         ):
             self.logger.warning(
-                "Session in-progress", session=self.data[self.activity][-1]
+                "Session in-progress", session=self.activity_log[self.activity][-1]
             )
             return
         self._add_action("start")
@@ -61,8 +62,8 @@ class Pomodoro:
     def stop(self) -> None:
         """Stop a session."""
         if (
-            self.activity not in self.data
-            or self.data[self.activity][-1]["action"] != "start"
+            self.activity not in self.activity_log
+            or self.activity_log[self.activity][-1]["action"] != "start"
         ):
             self.logger.warning("No active session found for this activity.")
             return
@@ -80,16 +81,16 @@ class Pomodoro:
             "This will add the following action. Are you sure you want to continue?",
             action=action,
         )
-        if self.activity in self.data and self.data[self.activity][-1] == new_action:
+        if self.activity in self.activity_log and self.activity_log[self.activity][-1] == new_action:
             self.logger.warning(
                 "This action is a duplicate of the last action. Skipping.",
                 action=action,
-                last_action=self.data[self.activity][-1],
+                last_action=self.activity_log[self.activity][-1],
             )
-        elif self.activity not in self.data:
-            self.data[self.activity] = []
+        elif self.activity not in self.activity_log:
+            self.activity_log[self.activity] = []
         if self._get_approval():
-            self.data[self.activity].append(new_action)
+            self.activity_log[self.activity].append(new_action)
             self._write_update()
             self.logger.debug("Added action.", action=action, filepath=self.path)
         else:
@@ -98,10 +99,10 @@ class Pomodoro:
     def show(self) -> None:
         """Show the session log."""
         self.logger.debug("Showing actions.")
-        if self.activity not in self.data:
+        if self.activity not in self.activity_log:
             self.logger.warning("No actions found for this activity.")
             return
-        print(json.dumps(self.data[self.activity], indent=4, sort_keys=False))
+        print(json.dumps(self.activity_log[self.activity], indent=4, sort_keys=False))
         self.logger.debug("Showed actions.")
 
     @staticmethod
@@ -118,7 +119,7 @@ class Pomodoro:
         self.logger.debug("Writing file.", path=self.path)
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
         with open(self.path, "w") as f:
-            json.dump(self.data, f)
+            json.dump(self.data, f, indent=4, sort_keys=False)
         self.logger.debug("Wrote to file.", path=self.path)
 
 

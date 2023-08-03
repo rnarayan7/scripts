@@ -1,1 +1,41 @@
-{"date": "2023-06-21", "work": [{"action": "start", "time": "2023-06-21T11:21:00"}, {"action": "stop", "time": "2023-06-21T12:08:00"}, {"action": "start", "time": "2023-06-21T15:00:00"}, {"action": "stop", "time": "2023-06-21T17:58:00"}, {"action": "start", "time": "2023-06-21T19:57:00"}, {"action": "stop", "time": "2023-06-21T20:10:00"}, {"action": "start", "time": "2023-06-21T20:46:00"}, {"action": "stop", "time": "2023-06-21T21:03:00"}]}
+{
+    "date": "2023-06-21",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-06-21T11:21:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-21T12:08:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-21T15:00:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-21T17:58:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-21T19:57:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-21T20:10:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-06-21T20:46:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-06-21T21:03:00"
+                }
+            ]
+        }
+    }
+}

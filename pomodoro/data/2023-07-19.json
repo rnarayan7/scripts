@@ -1,1 +1,25 @@
-{"date": "2023-07-19", "work": [{"action": "start", "time": "2023-07-19T09:46:00"}, {"action": "stop", "time": "2023-07-19T12:42:00"}, {"action": "start", "time": "2023-07-19T13:00:00"}, {"action": "stop", "time": "2023-07-19T17:32:00"}]}
+{
+    "date": "2023-07-19",
+    "activities": {
+        "activities": {
+            "work": [
+                {
+                    "action": "start",
+                    "time": "2023-07-19T09:46:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-07-19T12:42:00"
+                },
+                {
+                    "action": "start",
+                    "time": "2023-07-19T13:00:00"
+                },
+                {
+                    "action": "stop",
+                    "time": "2023-07-19T17:32:00"
+                }
+            ]
+        }
+    }
+}
