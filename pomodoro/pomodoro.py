@@ -1,12 +1,14 @@
-#!/usr/bin/python3
+#!/opt/homebrew/bin/python3
 
 import argparse
 import os.path
-from datetime import datetime
-from typing import Dict, Any
+from datetime import datetime, timedelta
+from typing import Dict, Any, Optional
 import json
 import structlog
 import logging
+import humanize
+from tabulate import tabulate
 
 SOURCE_DIRNAME = os.path.dirname(os.path.realpath(__file__))
 CONFIG_PATH = os.path.join(SOURCE_DIRNAME, "config.json")
@@ -29,7 +31,7 @@ class Pomodoro:
     path: str
     data: Dict[str, Any]
 
-    def __init__(self, activity: str, time: datetime) -> None:
+    def __init__(self, time: datetime, activity: Optional[str]) -> None:
         """
         Initialize the Pomodoro class.
 
@@ -37,15 +39,20 @@ class Pomodoro:
         :param time: Time for the session log.
         """
         self.time = time
-        self.activity = activity
         self.path = os.path.join(DATA_DIR, f"{time.date().isoformat()}.json")
         self.data = (
             read_file(self.path)
             if os.path.exists(self.path)
             else {"date": time.date().isoformat()}
         )
-        self.activity_log = self.data["activities"]
-        self.logger = logger.bind(activity=self.activity, time=self.time)
+        self.date = self.data["date"]
+        self.activity_log = self.data.get("activities", {})
+        self.activity = activity
+        self.logger = logger.bind(
+            date=humanize.naturaldate(self.time), time=humanize.naturaltime(self.time)
+        )
+        if self.activity:
+            self.logger.bind(activity=self.activity)
 
     def start(self) -> None:
         """Start a session."""
@@ -69,6 +76,44 @@ class Pomodoro:
             return
         self._add_action("stop")
 
+    def recap(self) -> None:
+        """Recap the day."""
+        self.logger.info("Recapping the day.")
+        recap_table = []
+        for activity in self.activity_log:
+            actions = self.activity_log[activity]
+            num_finished_sessions = len(actions) // 2
+            num_unfinished_sessions = len(actions) % 2
+            total_time = timedelta(0)
+            for session in range(num_finished_sessions):
+                start_time = datetime.fromisoformat(actions[session * 2]["time"])
+                end_time = datetime.fromisoformat(actions[session * 2 + 1]["time"])
+                total_time += end_time - start_time
+            if num_unfinished_sessions:
+                start_time = datetime.fromisoformat(actions[-1]["time"])
+                total_time += self.time - start_time
+            recap_table.append(
+                [
+                    activity,
+                    humanize.precisedelta(total_time),
+                    num_finished_sessions,
+                    num_unfinished_sessions,
+                ]
+            )
+        print(
+            tabulate(
+                recap_table,
+                headers=[
+                    "Activity",
+                    "Total Time",
+                    "Finished Sessions",
+                    "Ongoing Sessions",
+                ],
+                tablefmt="fancy_grid",
+            )
+        )
+        self.logger.info("Recap complete.")
+
     def _add_action(self, action: str) -> None:
         """
         Add an action to the session log.
@@ -81,7 +126,10 @@ class Pomodoro:
             "This will add the following action. Are you sure you want to continue?",
             action=action,
         )
-        if self.activity in self.activity_log and self.activity_log[self.activity][-1] == new_action:
+        if (
+            self.activity in self.activity_log
+            and self.activity_log[self.activity][-1] == new_action
+        ):
             self.logger.warning(
                 "This action is a duplicate of the last action. Skipping.",
                 action=action,
@@ -143,6 +191,16 @@ def add_date_subparser(parser: argparse.ArgumentParser) -> None:
     )
 
 
+def add_activity_subparser(parser: argparse.ArgumentParser, config) -> None:
+    """Add an activity subparser to the parser."""
+    parser.add_argument(
+        "activity",
+        type=str,
+        help="Activity for the pomodoro session",
+        choices=config["activities"],
+    )
+
+
 def parse_args(config: Dict) -> argparse.Namespace:
     """
     Parse the command line arguments.
@@ -156,17 +214,16 @@ def parse_args(config: Dict) -> argparse.Namespace:
     start_parser = subparsers.add_parser("start", help="Start a pomodoro session")
     add_time_subparser(start_parser)
     add_date_subparser(start_parser)
+    add_activity_subparser(start_parser, config)
     stop_parser = subparsers.add_parser("stop", help="Stop a pomodoro session")
     add_time_subparser(stop_parser)
     add_date_subparser(stop_parser)
+    add_activity_subparser(stop_parser, config)
     show_parser = subparsers.add_parser("show", help="Show pomodoro sessions")
     add_date_subparser(show_parser)
-    parser.add_argument(
-        "activity",
-        type=str,
-        help="Activity for the pomodoro session",
-        choices=config["activities"],
-    )
+    add_activity_subparser(show_parser, config)
+    recap_parser = subparsers.add_parser("recap", help="Recap pomodoro sessions")
+    add_date_subparser(recap_parser)
     parser.add_argument(
         "--debug",
         action="store_true",
@@ -203,10 +260,10 @@ if __name__ == "__main__":
         ),
     )
     pomodoro = Pomodoro(
-        activity=args.activity,
         time=merge_times(
             args.time if "time" in args else None, args.date if "date" in args else None
         ),
+        activity=args.activity if "activity" in args else None,
     )
     if args.command == "start":
         pomodoro.start()
@@ -214,3 +271,5 @@ if __name__ == "__main__":
         pomodoro.stop()
     elif args.command == "show":
         pomodoro.show()
+    elif args.command == "recap":
+        pomodoro.recap()
